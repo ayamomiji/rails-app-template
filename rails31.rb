@@ -23,6 +23,7 @@ append_file '.gitignore', '.rvmrc'
 uncomment 'Gemfile', "gem 'slim-rails'" if use_slim = yes?('Use Slim? (yes/no)')
 uncomment 'Gemfile', "gem 'cancan'" if use_cancan = yes?('Use Cancan? (yes/no)')
 uncomment 'Gemfile', "gem 'formtastic'" if use_formtastic = yes?('Use Formtastic? (yes/no)')
+uncomment 'Gemfile', "gem 'kaminari'" if use_kaminari = yes?('Use Kaminari? (yes/no)')
 
 # Bundler
 run 'bundle install'
@@ -87,6 +88,11 @@ end
 if use_formtastic
   generate 'formtastic:install'
   inject_into_file 'app/assets/stylesheets/application.css', " *= require formtastic\n", :before => ' *= require_self'
+end
+
+# Kaminari
+if use_kaminari
+  generate 'kaminari:config'
 end
 
 # TODO: setup these gems
