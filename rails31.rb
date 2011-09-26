@@ -2,6 +2,7 @@ remove_file 'README'
 remove_file 'public/index.html'
 remove_file 'app/assets/images/rails.png'
 
+# Helpers
 def read_from_file(filename)
   root = File.dirname(rails_template)
   File.read(File.join(root, filename))
@@ -9,6 +10,12 @@ end
 
 def uncomment(file, line)
   gsub_file file, /#\s*#{line}/, line
+end
+
+@after_bundle_install = []
+
+def after_bundle_install(&block)
+  @after_bundle_install << block
 end
 
 # Gemfile
@@ -19,14 +26,45 @@ file 'Gemfile', read_from_file('Gemfile')
 file '.rvmrc', 'rvm 1.9.2'
 append_file '.gitignore', '.rvmrc'
 
-# Using gems
-uncomment 'Gemfile', "gem 'slim-rails'" if use_slim = yes?('Use Slim? (yes/no)')
-uncomment 'Gemfile', "gem 'cancan'" if use_cancan = yes?('Use Cancan? (yes/no)')
-uncomment 'Gemfile', "gem 'formtastic'" if use_formtastic = yes?('Use Formtastic? (yes/no)')
-uncomment 'Gemfile', "gem 'kaminari'" if use_kaminari = yes?('Use Kaminari? (yes/no)')
+# Slim
+if yes?('Use Slim? (yes/no)')
+  uncomment 'Gemfile', "gem 'slim-rails'"
+  after_bundle_install do
+    remove_file 'app/views/layouts/application.html.erb'
+    file 'app/views/layouts/application.html.slim', read_from_file('application.html.slim')
+    gsub_file 'app/views/layouts/application.html.slim', /APP_NAME/, app_name.camelize
+  end
+end
+
+# Cancan
+if yes?('Use Cancan? (yes/no)')
+  uncomment 'Gemfile', "gem 'cancan'"
+  after_bundle_install do
+    generate 'cancan:ability'
+    file 'spec/models/ability_spec.rb', read_from_file('ability_spec.rb')
+  end
+end
+
+# Formtastic
+if yes?('Use Formtastic? (yes/no)')
+  uncomment 'Gemfile', "gem 'formtastic'"
+  after_bundle_install do
+    generate 'formtastic:install'
+    inject_into_file 'app/assets/stylesheets/application.css', " *= require formtastic\n", :before => ' *= require_self'
+  end
+end
+
+# Kaminari
+if yes?('Use Kaminari? (yes/no)')
+  uncomment 'Gemfile', "gem 'kaminari'"
+  after_bundle_install do
+    generate 'kaminari:config'
+  end
+end
 
 # Bundler
 run 'bundle install'
+@after_bundle_install.each(&:call)
 
 # Rspec, Spork, and Guard
 generate 'rspec:install'
@@ -70,30 +108,6 @@ FACTORIES
 
 # Annotate
 run 'guard init annotate'
-
-# Slim
-if use_slim
-  remove_file 'app/views/layouts/application.html.erb'
-  file 'app/views/layouts/application.html.slim', read_from_file('application.html.slim')
-  gsub_file 'app/views/layouts/application.html.slim', /APP_NAME/, app_name.camelize
-end
-
-# Cancan
-if use_cancan
-  generate 'cancan:ability'
-  file 'spec/models/ability_spec.rb', read_from_file('ability_spec.rb')
-end
-
-# Formtastic
-if use_formtastic
-  generate 'formtastic:install'
-  inject_into_file 'app/assets/stylesheets/application.css', " *= require formtastic\n", :before => ' *= require_self'
-end
-
-# Kaminari
-if use_kaminari
-  generate 'kaminari:config'
-end
 
 # TODO: setup these gems
 # * exception_notification
