@@ -24,7 +24,7 @@ gem 'rails-i18n'
 #gem 'cells'
 
 # Form helpers
-#gem 'formtastic', '~> 2.0.0.rc3'
+#gem 'formtastic'
 #gem 'simple_form'
 #gem 'client_side_validations'
 

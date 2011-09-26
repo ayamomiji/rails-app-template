@@ -22,6 +22,7 @@ append_file '.gitignore', '.rvmrc'
 # Using gems
 uncomment 'Gemfile', "gem 'slim-rails'" if use_slim = yes?('Use Slim? (yes/no)')
 uncomment 'Gemfile', "gem 'cancan'" if use_cancan = yes?('Use Cancan? (yes/no)')
+uncomment 'Gemfile', "gem 'formtastic'" if use_formtastic = yes?('Use Formtastic? (yes/no)')
 
 # Bundler
 run 'bundle install'
@@ -82,8 +83,13 @@ if use_cancan
   file 'spec/models/ability_spec.rb', read_from_file('ability_spec.rb')
 end
 
+# Formtastic
+if use_formtastic
+  generate 'formtastic:install'
+  inject_into_file 'app/assets/stylesheets/application.css', " *= require formtastic\n", :before => ' *= require_self'
+end
+
 # TODO: setup these gems
-# * formtastic (add styles)
 # * kaminari (config, i18n, views)
 # * exception_notification
 # * whenever
