@@ -96,7 +96,6 @@ if use_kaminari
 end
 
 # TODO: setup these gems
-# * kaminari (config, i18n, views)
 # * exception_notification
 # * whenever
 # * paperclip (spec helper)
