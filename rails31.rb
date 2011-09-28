@@ -115,6 +115,12 @@ run 'guard init annotate'
 # * paperclip (spec helper)
 # * dally (session store and cache store in production)
 
+# Quiet assets logging
+# http://stackoverflow.com/questions/6312448/how-to-disable-logging-of-asset-pipeline-sprockets-messages-in-rails-3-1
+if yes?('Disable assets logging? (yes/no)')
+  file 'config/initializers/quiet_assets.rb', read_from_file('quiet_assets.rb')
+end
+
 # Git
 git :init
 
