@@ -22,6 +22,7 @@ gem 'rails-i18n'
 #gem 'css3buttons', git: 'git://github.com/thetron/css3buttons_rails_helpers.git'
 #gem 'slim-rails'
 #gem 'cells'
+#gem 'draper'
 
 # Form helpers
 #gem 'formtastic'
