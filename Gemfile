@@ -67,7 +67,7 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'growl'
   gem 'rspec-rails'
-  gem 'rspec-cells'
+  #gem 'rspec-cells'
   gem 'capybara'
   gem 'shoulda-matchers', '~> 1.0.0.beta3'
   gem 'valid_attribute'
