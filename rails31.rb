@@ -62,6 +62,13 @@ if yes?('Use Kaminari? (yes/no)')
   end
 end
 
+# Cells and Draper
+if yes?('Use Cells and Draper? (yes/no)')
+  uncomment 'Gemfile', "gem 'cells'"
+  uncomment 'Gemfile', "gem 'rspec-cells'"
+  uncomment 'Gemfile', "gem 'draper'"
+end
+
 # Bundler
 run 'bundle install'
 @after_bundle_install.each(&:call)
