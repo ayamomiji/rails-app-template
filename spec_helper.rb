@@ -50,6 +50,5 @@ Spork.each_run do
     load Rails.root.join('db', 'schema.rb') # use db agnostic schema by default
   end
 
-  Dir[Rails.root.join('spec/factories/**/*.rb')].each {|f| load f}
   APP_NAME::Application.reload_routes!
 end
