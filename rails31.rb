@@ -24,7 +24,7 @@ file 'Gemfile', read_from_file('Gemfile')
 
 # RVM
 file '.rvmrc', 'rvm 1.9.2'
-append_file '.gitignore', '.rvmrc'
+append_file '.gitignore', ".rvmrc\n"
 
 # Slim
 if yes?('Use Slim? (yes/no)')
