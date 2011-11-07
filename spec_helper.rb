@@ -48,6 +48,7 @@ Spork.each_run do
   ActiveRecord::Schema.verbose = false
   silence_stream STDOUT do
     load Rails.root.join('db', 'schema.rb') # use db agnostic schema by default
+    load Rails.root.join('db', 'seeds.rb')
   end
 
   APP_NAME::Application.reload_routes!
