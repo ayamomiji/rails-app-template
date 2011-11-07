@@ -45,6 +45,8 @@ Spork.each_run do
   require 'simplecov'
   SimpleCov.start 'rails'
 
+  FactoryGirl.reload
+
   ActiveRecord::Schema.verbose = false
   silence_stream STDOUT do
     load Rails.root.join('db', 'schema.rb') # use db agnostic schema by default
