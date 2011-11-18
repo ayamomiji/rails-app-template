@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.2'
 gem 'rake'
 gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
@@ -70,7 +70,7 @@ group :development, :test do
   gem 'rspec-rails'
   #gem 'rspec-cells'
   gem 'capybara'
-  gem 'shoulda-matchers', '~> 1.0.0.beta3'
+  gem 'shoulda-matchers'
   gem 'valid_attribute'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
