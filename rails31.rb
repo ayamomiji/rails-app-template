@@ -23,7 +23,7 @@ remove_file 'Gemfile'
 file 'Gemfile', read_from_file('Gemfile')
 
 # RVM
-file '.rvmrc', 'rvm 1.9.2'
+file '.rvmrc', 'rvm 1.9.3'
 append_file '.gitignore', ".rvmrc\n"
 
 # Slim
