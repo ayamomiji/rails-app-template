@@ -15,7 +15,9 @@ end
 gem 'jquery-rails'
 gem 'rails-i18n'
 
-#gem 'omniauth', '~> 0.2.6'
+#gem 'omniauth'
+#gem 'rest-core'
+#gem 'rest-more'
 #gem 'cancan'
 #gem 'acts_as_list'
 
