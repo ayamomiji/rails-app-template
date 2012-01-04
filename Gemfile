@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.2'
+gem 'rails', '3.1.3'
 gem 'rake'
 gem 'mysql2'
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
@@ -9,7 +9,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'compass', '0.12.alpha.1'
+  gem 'compass', '0.12.alpha.3'
 end
 
 gem 'jquery-rails'
