@@ -1,15 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.1'
 gem 'rake'
-gem 'mysql2'
+gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'compass', '0.12.alpha.3'
+  gem 'compass', '0.12.rc.1'
+  gem 'compass-rails', '1.0.0.rc.2'
 end
 
 gem 'jquery-rails'
@@ -22,14 +23,12 @@ gem 'rails-i18n'
 #gem 'acts_as_list'
 
 # View helpers
-#gem 'css3buttons', git: 'git://github.com/thetron/css3buttons_rails_helpers.git'
 #gem 'slim-rails'
+#gem 'rabl'
 #gem 'cells'
-#gem 'draper'
 
 # Form helpers
-#gem 'formtastic'
-#gem 'simple_form'
+#gem 'simple_form', '2.0.0.rc'
 #gem 'client_side_validations'
 
 # Query DSL
@@ -54,7 +53,8 @@ gem 'rails-i18n'
 #gem 'whenever', require: false
 
 # File upload
-#gem 'paperclip'
+#gem 'carrierwave', require: ['carrierwave', 'carrierwave/orm/activerecord']
+#gem 'mini_magick'
 
 # Memcached
 #gem 'dalli'
@@ -65,6 +65,7 @@ gem 'rails-i18n'
 #gem 'redis-objects', require: 'redis/objects'
 
 group :development, :test do
+  gem 'thin'
   gem 'sqlite3'
   gem 'guard'
   gem 'rb-fsevent'
@@ -76,9 +77,10 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
-  gem 'spork', '~> 0.9.0.rc'
+  gem 'spork'
   gem 'guard-spork'
   gem 'annotate'
   gem 'guard-annotate'
   gem 'simplecov', require: false
+  gem 'foreman'
 end

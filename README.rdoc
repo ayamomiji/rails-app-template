@@ -5,7 +5,9 @@ Inspired by https://github.com/ihower/rails3-app-template
 == Usage
 
   git clone git://github.com/ayamomiji/rails-app-template.git
-  rails new your_app_name -TJ -d mysql -m rails-app-template/rails31.rb
+  rails new your_app_name -TJ -d postgresql -m rails-app-template/rails32.rb
+
+This will setup some gems and create db `your_app_name`.
 
 == License
 

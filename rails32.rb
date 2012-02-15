@@ -46,11 +46,10 @@ if yes?('Use Cancan? (yes/no)')
 end
 
 # Formtastic
-if yes?('Use Formtastic? (yes/no)')
-  uncomment 'Gemfile', "gem 'formtastic'"
+if yes?('Use Simple Form? (yes/no)')
+  uncomment 'Gemfile', "gem 'simple_form'"
   after_bundle_install do
-    generate 'formtastic:install'
-    inject_into_file 'app/assets/stylesheets/application.css', " *= require formtastic\n", :before => ' *= require_self'
+    generate 'simple_form:install'
   end
 end
 
@@ -63,15 +62,37 @@ if yes?('Use Kaminari? (yes/no)')
 end
 
 # Cells and Draper
-if yes?('Use Cells and Draper? (yes/no)')
+if yes?('Use Cells? (yes/no)')
   uncomment 'Gemfile', "gem 'cells'"
   uncomment 'Gemfile', "gem 'rspec-cells'"
-  uncomment 'Gemfile', "gem 'draper'"
 end
+
+# Setup database
+gsub_file 'config/database.yml', /_development$/, ''
+gsub_file 'config/database.yml', /_production$/, ''
+gsub_file 'config/database.yml', /username: .+$/, "username: #{ENV['DB_USER'] || 'ayaya'}"
+gsub_file 'config/database.yml', /password: .+$/, "password: #{ENV['DB_PASS']}"
+rake 'db:create'
 
 # Bundler
 run 'bundle install'
 @after_bundle_install.each(&:call)
+
+# Application config
+
+inject_into_file 'config/application.rb', <<-CONFIG, :after => "config.assets.version = '1.0'"
+
+    # Don't generate helper and asset files with controller
+    config.generators.helper = false
+    config.generators.assets = false
+
+    # Don't auto include all helpers
+    #config.action_controller.include_all_helpers = false
+
+    Dir['vendor/assets/*'].each do |path|
+      config.assets.paths << Rails.root + path
+    end
+CONFIG
 
 # Rspec, Spork, and Guard
 generate 'rspec:install'
@@ -95,31 +116,12 @@ run 'guard init'
 run 'guard init spork'
 run 'guard init rspec'
 
-file 'spec/factories.rb', <<-FACTORIES
-FactoryGirl.define do
-  # Add your factories here, for example:
-  #
-  #sequence(:username) { |n| "username-\#{n}" }
-  #sequence(:password) { SecureRandom.hex(30) }
-  #
-  #factory :user do
-  #  username { Factory.next(:username) }
-  #  password { Factory.next(:password) }
-  #
-  #  factory :admin do
-  #    admin true
-  #  end
-  #end
-end
-FACTORIES
-
 # Annotate
 run 'guard init annotate'
 
 # TODO: setup these gems
 # * exception_notification
 # * whenever
-# * paperclip (spec helper)
 # * dally (session store and cache store in production)
 
 # Quiet assets logging
