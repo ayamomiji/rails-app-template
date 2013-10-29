@@ -30,6 +30,7 @@ group :development do
 
   # Preload rails
   gem 'spring'
+  gem 'spring-commands-rspec', require: false
 
   # Do not log assets
   gem 'quiet_assets'

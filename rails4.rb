@@ -51,6 +51,17 @@ generate 'homura:install'
 run 'guard init annotate rspec'
 insert_into_file 'Guardfile', ", all_after_pass: true, all_on_start: true, keep_failed: true, cmd: 'spring rspec'", after: 'guard :rspec'
 
+# Setup spring
+copy_file 'spring.rb', 'config/spring.rb'
+
+# Setup app
+inject_into_file 'config/application.rb', <<-CONFIG, after: "# config.i18n.default_locale = :de\n"
+
+    # Don't generate helper and asset files with controller
+    config.generators.helper = false
+    config.generators.assets = false
+CONFIG
+
 git :init
 git add: '.'
 git commit: '-m "initial commit"'
