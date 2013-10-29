@@ -11,7 +11,7 @@ group :development do
   gem 'thin'
 
   # Use guard to watch files
-  gem 'guard'
+  gem 'guard', '>= 2.0.0'
   gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
 
