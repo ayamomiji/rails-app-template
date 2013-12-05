@@ -49,7 +49,7 @@ generate 'homura:install'
 
 # Setup guard
 run 'guard init annotate rspec livereload'
-insert_into_file 'Guardfile', ", all_after_pass: true, all_on_start: true, keep_failed: true, cmd: 'spring rspec'", after: 'guard :rspec'
+insert_into_file 'Guardfile', ", all_after_pass: true, all_on_start: true, cmd: 'spring rspec'", after: 'guard :rspec'
 
 # Setup spring
 copy_file 'spring.rb', 'config/spring.rb'
