@@ -8,9 +8,12 @@ gem 'oj' # Faster JSON
 
 group :development do
   # Use guard to watch files
-  gem 'guard', '>= 2.0.0'
+  gem 'guard'
   gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
+
+  # Auto run specs
+  gem 'guard-rspec'
 
   # Annotate models
   gem 'guard-annotate'
@@ -33,9 +36,8 @@ group :development do
   gem 'quiet_assets'
 end
 
-group :development, :test do
+group :test do
   # Rspec
-  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'fuubar'
   gem 'database_cleaner'
