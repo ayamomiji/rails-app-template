@@ -9,6 +9,9 @@ end
 # Add `rake server`
 copy_file 'server.rake', 'lib/tasks/server.rake'
 
+# Use unicorn as development server
+gsub_file 'Gemfile', "# gem 'unicorn'", "gem 'unicorn-rails'"
+
 # Add extra gems
 append_file 'Gemfile', read_file('extra_gems.rb')
 run 'bundle install'

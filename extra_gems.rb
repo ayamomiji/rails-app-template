@@ -7,9 +7,6 @@ gem 'homura'
 gem 'oj' # Faster JSON
 
 group :development do
-  # Use thin as development server
-  gem 'thin'
-
   # Use guard to watch files
   gem 'guard', '>= 2.0.0'
   gem 'rb-fsevent'
