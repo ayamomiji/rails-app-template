@@ -6,11 +6,18 @@ def read_file(filename)
   File.read(File.join(root, filename))
 end
 
+# Questions
+use_bootstrap = yes? 'Use Bootstrap? (y/n)'
+generate_default_index_page = yes? 'Generate default index page? (y/n)' if use_bootstrap
+
 # Use unicorn as development server
 gsub_file 'Gemfile', "# gem 'unicorn'", "gem 'unicorn-rails'"
 
 # Add extra gems
 append_file 'Gemfile', read_file('extra_gems.rb')
+if use_bootstrap
+  inject_into_file 'Gemfile', "gem 'bootstrap-sass'\n", after: "gem 'sass-rails', '~> 4.0.0'\n"
+end
 run 'bundle install'
 
 # Setup rspec
@@ -66,10 +73,14 @@ CONFIG
 copy_file 'application.css.scss', 'app/assets/stylesheets/application.css.scss'
 remove_file 'app/assets/stylesheets/application.css'
 
-if yes? 'Use Bootstrap?'
-  inject_into_file 'Gemfile', "gem 'bootstrap-scss'\n", after: "gem 'sass-rails', '~> 4.0.0'\n"
-
+if use_bootstrap
   inject_into_file 'app/assets/stylesheets/application.css.scss', "\n@import 'bootstrap';\n@import 'bootstrap/theme';", after: '*/'
+
+  if generate_default_index_page
+    generate 'controller', 'pages'
+    inject_into_file 'config/routes.rb', "  root to: 'pages#index'\n", after: "draw do\n"
+    file 'app/views/pages/index.html.slim', ''
+  end
 end
 
 git :init
