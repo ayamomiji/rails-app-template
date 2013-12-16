@@ -62,6 +62,10 @@ inject_into_file 'config/application.rb', <<-CONFIG, after: "# config.i18n.defau
     config.generators.assets = false
 CONFIG
 
+# Use SCSS for application
+copy_file 'application.css.scss', 'app/assets/stylesheets/application.css.scss'
+remove_file 'app/assets/stylesheets/application.css'
+
 git :init
 git add: '.'
 git commit: '-m "initial commit"'
