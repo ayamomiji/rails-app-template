@@ -66,6 +66,12 @@ CONFIG
 copy_file 'application.css.scss', 'app/assets/stylesheets/application.css.scss'
 remove_file 'app/assets/stylesheets/application.css'
 
+if yes? 'Use Bootstrap?'
+  inject_into_file 'Gemfile', "gem 'bootstrap-scss'\n", after: "gem 'sass-rails', '~> 4.0.0'\n"
+
+  inject_into_file 'app/assets/stylesheets/application.css.scss', "\n@import 'bootstrap';\n@import 'bootstrap/theme';", after: '*/'
+end
+
 git :init
 git add: '.'
 git commit: '-m "initial commit"'
