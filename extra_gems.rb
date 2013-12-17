@@ -16,6 +16,7 @@ group :development do
   gem 'guard-rspec'
 
   # Annotate models
+  gem 'annotate', '~> 2.5.0'
   gem 'guard-annotate'
 
   # Livereload
@@ -36,7 +37,7 @@ group :development do
   gem 'quiet_assets'
 end
 
-group :test do
+group :development, :test do
   # Rspec
   gem 'rspec-rails'
   gem 'fuubar'
