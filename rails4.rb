@@ -3,7 +3,7 @@ source_paths << File.expand_path('..', __FILE__)
 # Helpers
 def read_file(filename)
   root = File.dirname(rails_template)
-  File.read(File.join(root, filename))
+  File.read(File.join(root, 'templates', filename))
 end
 
 # Questions
