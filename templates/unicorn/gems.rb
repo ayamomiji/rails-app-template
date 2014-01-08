@@ -1,2 +1,4 @@
-gem 'unicorn-rails'
-gem 'unicorn-worker-killer'
+group :production do
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+end
