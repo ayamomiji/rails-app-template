@@ -54,7 +54,7 @@ remove_file 'app/views/layouts/application.html.erb'
 generate 'homura:install'
 
 # Setup guard
-run 'guard init annotate rspec livereload'
+run 'guard init annotate rspec livereload pow'
 insert_into_file 'Guardfile', ", all_after_pass: true, all_on_start: true, cmd: 'spring rspec'", after: 'guard :rspec'
 
 # Setup spring

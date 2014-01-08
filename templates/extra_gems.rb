@@ -35,6 +35,9 @@ group :development do
 
   # Do not log assets
   gem 'quiet_assets'
+
+  # Restart pow automatically
+  gem 'guard-pow'
 end
 
 group :development, :test do
