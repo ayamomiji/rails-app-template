@@ -20,7 +20,7 @@ copy_file 'templates/unicorn/config.rb', 'config/unicorn/production.rb'
 # Add extra gems
 append_file 'Gemfile', read('templates/extra_gems.rb')
 if use_bootstrap
-  inject_into_file 'Gemfile', read('templates/bootstrap/gems.rb'), after: "gem 'sass-rails', '~> 4.0.0'\n"
+  inject_into_file 'Gemfile', read('templates/bootstrap/gems.rb'), after: /gem 'sass-rails', '.+'\n/
 end
 run 'bundle install'
 
