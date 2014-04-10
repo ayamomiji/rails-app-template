@@ -29,8 +29,7 @@ group :development do
   # Open mail in browser
   gem 'letter_opener'
 
-  # Preload rails
-  gem 'spring'
+  # Add rspec support for spring
   gem 'spring-commands-rspec', require: false
 
   # Do not log assets
