@@ -1,4 +1,6 @@
 
 # Ignore database config.
 config/database.yml
-IGNORE_DATABASE
+
+# Ignore secrets config.
+config/secrets.yml
