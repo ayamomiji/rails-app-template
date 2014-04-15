@@ -5,9 +5,18 @@ Inspired by https://github.com/ihower/rails3-app-template
 == Usage
 
   git clone git://github.com/ayamomiji/rails-app-template.git
-  rails new your_app_name -TJ -d postgresql -m rails-app-template/rails4.rb
+  rails new your_app_name --database postgresql --skip-test-unit --skip-bundle --template=/path/to/rails4.rb
 
-This will setup some gems and create db `your_app_name`.
+== What's Included
+
+* Bootstrap and default blank index page (Optional)
+* Unicorn config for staging/production
+* Guard for rspec, annotate, pow and livereload
+* RSpec with database cleaner, factory girls, shoulda matchers, timecop and capybara
+* Use the same database on development and production
+* Letter opener
+* Homura layout helper ほむほむ
+* Disable helper and assets generator
 
 == License
 
