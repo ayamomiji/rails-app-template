@@ -55,8 +55,12 @@ remove_file 'app/views/layouts/application.html.erb'
 generate 'homura:install'
 
 # Setup guard
-run 'guard init annotate rspec livereload pow'
-insert_into_file 'Guardfile', ", all_after_pass: true, all_on_start: true, cmd: 'spring rspec'", after: 'guard :rspec'
+run 'guard init annotate'
+append_to_file 'Guardfile', read('templates/rubocop/Guardfile')
+run 'guard init livereload pow'
+
+# Setup rubocop
+copy_file 'templates/rubocop/rubocop.yml', '.rubocop.yml'
 
 # Setup spring
 copy_file 'templates/spring.rb', 'config/spring.rb'
@@ -77,6 +81,9 @@ if use_bootstrap
     file 'app/views/pages/index.html.slim', ''
   end
 end
+
+# Fix source code
+run 'bundle exec rubocop -a'
 
 git :init
 git add: '.'

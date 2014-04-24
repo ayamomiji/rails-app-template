@@ -37,6 +37,10 @@ group :development do
 
   # Restart pow automatically
   gem 'guard-pow'
+
+  # Code analyzer
+  gem 'rubocop'
+  gem 'guard-rubocop'
 end
 
 group :development, :test do

@@ -1,0 +1,23 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+
+AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+AsciiComments:
+  Enabled: false
+
+LineLength:
+  Max: 150
+
+MethodLength:
+  Max: 50
+
+ClassLength:
+  Max: 500
+
+Documentation:
+  Enabled: false

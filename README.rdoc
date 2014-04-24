@@ -17,6 +17,7 @@ Inspired by https://github.com/ihower/rails3-app-template
 * Letter opener
 * Homura layout helper ほむほむ
 * Disable helper and assets generator
+* Use rubocop to correct code
 
 == License
 
