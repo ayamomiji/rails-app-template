@@ -9,13 +9,16 @@ end
 # Questions
 use_bootstrap = yes? 'Use Bootstrap? (y/n)'
 generate_default_index_page = yes? 'Generate default index page? (y/n)' if use_bootstrap
+use_unicorn = yes? 'Use Unicorn to deploy your app? (y/n)'
 
-# Use unicorn as development server
-gsub_file 'Gemfile', "# gem 'unicorn'", read('templates/unicorn/gems.rb').chomp
-remove_file 'config.ru'
-copy_file 'templates/unicorn/config.ru', 'config.ru'
-copy_file 'templates/unicorn/config.rb', 'config/unicorn/staging.rb'
-copy_file 'templates/unicorn/config.rb', 'config/unicorn/production.rb'
+if use_unicorn
+  # Use unicorn as development server
+  gsub_file 'Gemfile', "# gem 'unicorn'", read('templates/unicorn/gems.rb').chomp
+  remove_file 'config.ru'
+  copy_file 'templates/unicorn/config.ru', 'config.ru'
+  copy_file 'templates/unicorn/config.rb', 'config/unicorn/staging.rb'
+  copy_file 'templates/unicorn/config.rb', 'config/unicorn/production.rb'
+end
 
 # Add extra gems
 append_file 'Gemfile', read('templates/extra_gems.rb')

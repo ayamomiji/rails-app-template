@@ -10,7 +10,7 @@ Inspired by https://github.com/ihower/rails3-app-template
 == What's Included
 
 * Bootstrap and default blank index page (Optional)
-* Unicorn config for staging/production
+* Unicorn config for staging/production (Optional)
 * Guard for rspec, annotate, pow and livereload
 * RSpec with database cleaner, factory girls, shoulda matchers, timecop and capybara
 * Use the same database on development and production
