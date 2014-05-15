@@ -21,3 +21,9 @@ ClassLength:
 
 Documentation:
   Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false
