@@ -47,8 +47,6 @@ end
 if !options[:skip_active_record]
   gsub_file 'config/database.yml', /_development$/, ''
   gsub_file 'config/database.yml', /_production$/, ''
-  gsub_file 'config/database.yml', /username: .+$/, "username: #{ENV['DB_USER'] || 'ayaya'}"
-  gsub_file 'config/database.yml', /password: .+$/, "password: #{ENV['DB_PASS']}"
   run 'cp config/database.yml config/database.yml.example'
   run 'cp config/secrets.yml config/secrets.yml.example'
   append_file '.gitignore', read('templates/gitignore')
