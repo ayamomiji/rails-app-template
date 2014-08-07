@@ -45,7 +45,6 @@ end
 group :development, :test do
   # Rspec
   gem 'rspec-rails'
-  gem 'fuubar'
   gem 'database_cleaner'
 
   # Factory

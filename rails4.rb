@@ -28,10 +28,14 @@ end
 run 'bundle install'
 
 # Setup rspec
+generate 'rspec:install'
+gsub_file 'spec/rails_helper.rb', 'config.use_transactional_fixtures = true', 'config.use_transactional_fixtures = false'
 run 'mkdir -p spec/support'
-copy_file 'templates/spec_helper.rb', 'spec/spec_helper.rb'
-copy_file 'templates/mailer_macros.rb', 'spec/support/mailer_macros.rb'
-copy_file 'templates/rspec_rc', '.rspec'
+copy_file 'templates/rspec/capybara.rb', 'spec/support/capybara.rb'
+copy_file 'templates/rspec/database_cleaner.rb', 'spec/support/database_cleaner.rb'
+copy_file 'templates/rspec/factory_girl.rb', 'spec/support/factor_girl.rb'
+copy_file 'templates/rspec/mailer_macros.rb', 'spec/support/mailer_macros.rb'
+copy_file 'templates/rspec/rspec_rc', '.rspec'
 
 # Setup slim
 copy_file 'templates/slim.rb', 'config/initializers/slim.rb'
