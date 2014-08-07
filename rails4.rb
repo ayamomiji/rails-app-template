@@ -10,6 +10,7 @@ end
 use_bootstrap = yes? 'Use Bootstrap? (y/n)'
 generate_default_index_page = yes? 'Generate default index page? (y/n)' if use_bootstrap
 use_unicorn = yes? 'Use Unicorn to deploy your app? (y/n)'
+slim_template = yes? 'Need slim template in assets? (y/n)'
 
 if use_unicorn
   # Use unicorn as development server
@@ -38,7 +39,9 @@ copy_file 'templates/rspec/mailer_macros.rb', 'spec/support/mailer_macros.rb'
 copy_file 'templates/rspec/rspec_rc', '.rspec'
 
 # Setup slim
-copy_file 'templates/slim.rb', 'config/initializers/slim.rb'
+if slim_template
+  copy_file 'templates/slim.rb', 'config/initializers/slim.rb'
+end
 
 # Setup database
 if !options[:skip_active_record]
