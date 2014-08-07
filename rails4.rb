@@ -27,9 +27,6 @@ if use_bootstrap
 end
 run 'bundle install'
 
-# Silence I18n deprecation warning
-copy_file 'templates/i18n.rb', 'config/initializers/i18n.rb'
-
 # Setup rspec
 run 'mkdir -p spec/support'
 copy_file 'templates/spec_helper.rb', 'spec/spec_helper.rb'
