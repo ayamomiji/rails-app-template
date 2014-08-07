@@ -15,7 +15,7 @@ group :development do
   gem 'guard-rspec'
 
   # Annotate models
-  gem 'annotate', '~> 2.5.0'
+  gem 'annotate'
   gem 'guard-annotate'
 
   # Livereload
