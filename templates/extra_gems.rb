@@ -9,7 +9,6 @@ gem 'oj' # Faster JSON
 group :development do
   # Use guard to watch files
   gem 'guard'
-  gem 'rb-fsevent'
   gem 'terminal-notifier-guard'
 
   # Auto run specs
