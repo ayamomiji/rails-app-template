@@ -28,6 +28,9 @@ if use_bootstrap
 end
 run 'bundle install'
 
+# Setup Spring
+run 'spring binstub --all'
+
 # Setup rspec
 generate 'rspec:install'
 gsub_file 'spec/rails_helper.rb', 'config.use_transactional_fixtures = true', 'config.use_transactional_fixtures = false'
